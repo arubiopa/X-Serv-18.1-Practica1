@@ -50,7 +50,7 @@ class contentApp (webapp.webApp):
                 htmlBody = ("<html><body>" + self.formulario()
                     + "url almacenadas: </br>" + str(self.url1))
                 for key in self.url1.keys():
-                    htmlBody += "<p><a href='/" + str(key) +  "'>" + str(key) + "</a></p>"
+                    htmlBody += "<p><a href='/" + str(key) + "'>" + str(key) + "</a></p>"
 
                 htmlBody += '</body></html>'
                 return (httpCode, htmlBody)
@@ -58,14 +58,14 @@ class contentApp (webapp.webApp):
                 try:
                     url = self.url1[int(peticion[1].split("/")[1])]
                     httpCode = "307 Redirect"
-                    htmlBody = '<html><body>Redirect....<meta http-equiv="refresh" content="2;url='+ str(url) +'"></body></html>'
+                    htmlBody = '<html><body>Redirect....<meta http-equiv = "refresh" content = "2;url = ' + str(url) + '"></body></html>'
                     return (httpCode, htmlBody)
 
                 except KeyError:
                     httpCode = "404 Not Found"
                     htmlBody = ("<html><body>" + self.formulario()
-                        +'<p>Recurso no encontrado</p>'
-                        +'</body></html>')
+                        + '<p>Recurso no encontrado</p>'
+                        + '</body></html>')
                     return (httpCode, htmlBody)
 
                 except IndexError:
@@ -77,7 +77,7 @@ class contentApp (webapp.webApp):
         elif metodo == "POST":
             url = cuerpo.split("=")[1]
 
-            if url.find("http%3A%2F%2F") >=  0:
+            if url.find("http%3A%2F%2F") >= 0:
                 url = url.split('http%3A%2F%2F')[1]
 
             url = "http://" + url
@@ -91,10 +91,8 @@ class contentApp (webapp.webApp):
                 self.url1[self.n_urls] = url
                 self.n_urls += 1
 
-
-
             httpCode = "307 Redirect"
-            htmlBody = '<html><body>Redirect....<meta http-equiv="refresh" content="2;url=/"></body></html>'
+            htmlBody = '<html><body>Redirect....<meta http-equiv = "refresh" content = "2;url=/"></body></html>'
             return (httpCode, htmlBody)
         else:
             httpCode = "404 Not Found"
