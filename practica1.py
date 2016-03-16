@@ -13,6 +13,7 @@ import webapp
 
 #webapp.webApp = para que no haya colision de nombres modulo.clase
 class contentApp (webapp.webApp):
+
     """Simple web application for managing content.
     Content is stored in a dictionary, which is intialized
     with the web content."""
@@ -20,6 +21,7 @@ class contentApp (webapp.webApp):
     # Declare and initialize content
     url1 = {}
     n_urls = 0
+
     def formulario(self):
         return ('<form method="POST" action="">formulario urls'
                 + '<input type="text" name="nombre" value=""/>'
@@ -48,7 +50,7 @@ class contentApp (webapp.webApp):
                 htmlBody = ("<html><body>" + self.formulario()
                     + "url almacenadas: </br>" + str(self.url1))
                 for key in self.url1.keys():
-                    htmlBody += "<p><a href='/" + str(key) +  "'>"+ str(key) + "</a></p>"
+                    htmlBody += "<p><a href='/" + str(key) +  "'>" + str(key) + "</a></p>"
 
                 htmlBody += '</body></html>'
                 return (httpCode, htmlBody)
@@ -69,8 +71,8 @@ class contentApp (webapp.webApp):
                 except IndexError:
                     httpCode = "404 Not Found"
                     htmlBody = ("<html><body>" + self.formulario()
-                        +'<p>Recurso no encontrado</p>'
-                        +'</body></html>')
+                        + '<p>Recurso no encontrado</p>'
+                        + '</body></html>')
                     return (httpCode, htmlBody)
         elif metodo == "POST":
             url = cuerpo.split("=")[1]
@@ -97,8 +99,8 @@ class contentApp (webapp.webApp):
         else:
             httpCode = "404 Not Found"
             htmlBody = ("<html><body>" + self.formulario()
-                +'<p>Metodo desconocid</p>'
-                +'</body></html>')
+                + '<p>Metodo desconocid</p>'
+                + '</body></html>')
 
         return (httpCode, htmlBody)
 
